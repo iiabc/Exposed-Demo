@@ -2,7 +2,7 @@
 
 plugins {
     id("com.github.johnrengelman.shadow")
-    id("com.hiusers.klos") version "0.0.2"
+    // id("com.hiusers.klos") version "0.0.2"
 }
 
 taboolib {

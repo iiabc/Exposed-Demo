@@ -10,7 +10,7 @@ plugins {
     kotlin("jvm") version "2.1.0"
 }
 
-// val exposedVersion: String by project
+val exposedVersion: String by project
 
 subprojects {
     apply<JavaPlugin>()
@@ -34,6 +34,7 @@ subprojects {
         }
         version {
             taboolib = "6.2.4-abd325ee"
+            skipKotlinRelocate = true
         }
 
         relocate("top.maplex.arim", "${rootProject.group}.libs.arim")
@@ -59,10 +60,11 @@ subprojects {
 
         compileOnly("com.google.code.gson:gson:2.8.7")
         implementation("com.zaxxer:HikariCP:4.0.3")
-        // compileOnly("org.jetbrains.exposed:exposed-core:${exposedVersion}")
-        // compileOnly("org.jetbrains.exposed:exposed-dao:${exposedVersion}")
-        // compileOnly("org.jetbrains.exposed:exposed-jdbc:${exposedVersion}")
-        // compileOnly("org.jetbrains.exposed:exposed-java-time:${exposedVersion}")
+        // Exposed 使用 TabooLib 动态依赖，不打包
+        compileOnly("org.jetbrains.exposed:exposed-core:${exposedVersion}")
+        compileOnly("org.jetbrains.exposed:exposed-dao:${exposedVersion}")
+        compileOnly("org.jetbrains.exposed:exposed-jdbc:${exposedVersion}")
+        compileOnly("org.jetbrains.exposed:exposed-java-time:${exposedVersion}")
         // compileOnly("org.openjdk.nashorn:nashorn-core:15.4")
     }
     // 编译配置
